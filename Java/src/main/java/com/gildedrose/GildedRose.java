@@ -29,7 +29,13 @@ class GildedRose {
         for (Item item : items) {
             final ITEM_TYPE type = getTypeOfItem(item);
 
-            if (type != ITEM_TYPE.BRIE && type != ITEM_TYPE.TICKET) {
+            if (type == ITEM_TYPE.CONJURED) {
+                item.quality = item.quality - 2;
+
+                if (item.sellIn <= 0)
+                    item.quality = item.quality - 1;
+
+            } else if (type != ITEM_TYPE.BRIE && type != ITEM_TYPE.TICKET) {
                 if (item.quality > 0) {
                     if (type != ITEM_TYPE.LEGENDARY) {
                         item.quality = item.quality - 1;
